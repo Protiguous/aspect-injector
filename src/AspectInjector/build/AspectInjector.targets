@@ -55,7 +55,7 @@
     <Exec Command="$(_SignCommand)" Condition="'$(_SignCommand)' != ''" EchoOff="true" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="_SignExitCode" />
     </Exec>
-    <Error Text="Aspect Injector cannot re-sing assembly. Try rebuid solution." Condition="'$(_SignExitCode)' != '0'" Code="AI_ERR0" File="AspectInjector"/>
+    <Error Text="Aspect Injector cannot re-sign assembly. Try rebuid solution." Condition="'$(_SignExitCode)' != '0'" Code="AI_ERR0" File="AspectInjector"/>
     <Touch Files="%(IntermediateAssembly.FullPath).aspectsinjected" AlwaysCreate="true" Time="%(IntermediateAssembly.ModifiedTime)"/>
     <Touch Files="%(IntermediateAssembly.FullPath).aspectssigned" AlwaysCreate="true" Time="%(IntermediateAssembly.ModifiedTime)"/>
   </Target>
