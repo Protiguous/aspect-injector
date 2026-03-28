@@ -17,7 +17,7 @@ namespace AspectInjector.Analyzer.CodeFixes
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(EffectRules.MixinSupportsOnlyAspectInterfaces.Id); }
+            get { return [EffectRules.MixinSupportsOnlyAspectInterfaces.Id]; }
         }
 
         public sealed override Task RegisterCodeFixesAsync(CodeFixContext context)

@@ -11,11 +11,12 @@ namespace AspectInjector.Analyzer.Analyzers
     public class MixinAttributeAnalyzer : DiagnosticAnalyzer
     {
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-            => ImmutableArray.Create(
+            =>
+            [
                 EffectRules.MixinSupportsOnlyInterfaces.AsDescriptor()
                 , EffectRules.EffectMustBePartOfAspect.AsDescriptor()
                 , EffectRules.MixinSupportsOnlyAspectInterfaces.AsDescriptor()
-                );
+            ];
 
         public override void Initialize(AnalysisContext context)
         {

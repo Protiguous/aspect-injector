@@ -13,12 +13,13 @@ namespace AspectInjector.Analyzer.Analyzers
     public class ArgumentAttributeAnalyzer : DiagnosticAnalyzer
     {
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-            => ImmutableArray.Create(
+            =>
+            [
                 EffectRules.ArgumentMustBePartOfAdvice.AsDescriptor()
                 , EffectRules.ArgumentIsAlwaysNull.AsDescriptor()
                 , EffectRules.ArgumentMustHaveValidType.AsDescriptor()
                 , GeneralRules.UnknownCompilationOption.AsDescriptor()
-                );
+            ];
 
         public override void Initialize(AnalysisContext context)
         {

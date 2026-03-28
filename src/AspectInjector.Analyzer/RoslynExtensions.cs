@@ -1,4 +1,4 @@
-﻿using AspectInjector.Broker;
+using AspectInjector.Broker;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -22,11 +22,11 @@ namespace AspectInjector.Analyzer
     {
         public static SyntaxNode WithUpdatedUsings(this SyntaxNode node, UsingDirectiveSyntax[] usings)
         {
-            usings = usings.Where(u => u != null).Distinct(UsingComparer.Instance).ToArray();
+            usings = usings.Where(static u => u != null).Distinct(UsingComparer.Instance).ToArray();
             if (!usings.Any())
                 return node;
 
-            var existingUsings = node.DescendantNodes(s => s is NamespaceDeclarationSyntax || s is CompilationUnitSyntax).OfType<UsingDirectiveSyntax>().ToArray();
+            var existingUsings = node.DescendantNodes(s => s is NamespaceDeclarationSyntax or CompilationUnitSyntax).OfType<UsingDirectiveSyntax>().ToArray();
             if (existingUsings.Length == 0)
             {
                 node = node.InsertNodesBefore(node.ChildNodes().First(), List(usings));
@@ -73,7 +73,7 @@ namespace AspectInjector.Analyzer
 
         public static IReadOnlyList<AttributeData> GetMixinAttributes(this ISymbol symbol)
         {
-            if (symbol == null) return new AttributeData[] { };
+            if (symbol == null) return [];
             var attrs = symbol.GetAttributes().Where(a => a.AttributeClass.ToDisplayString() == WellKnown.MixinType).ToArray();
             return attrs;
         }

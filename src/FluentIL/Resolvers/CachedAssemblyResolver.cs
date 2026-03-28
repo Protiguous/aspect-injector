@@ -10,12 +10,12 @@ namespace FluentIL.Resolvers
 
         public override AssemblyDefinition Resolve(AssemblyNameReference name, ReaderParameters parameters)
         {
-            var result = _cache.ContainsKey(name.FullName) ? _cache[name.FullName] : null;
+            var result = this._cache.ContainsKey(name.FullName) ? this._cache[name.FullName] : null;
 
             if (result == null)
             {
-                result = LookupAssembly(name, parameters);
-                _cache[name.FullName] = result;
+                result = this.LookupAssembly(name, parameters);
+                this._cache[name.FullName] = result;
             }
 
             return result;
@@ -32,10 +32,10 @@ namespace FluentIL.Resolvers
                 throw new ArgumentNullException("assembly");
 
             var name = assembly.Name.FullName;
-            if (_cache.ContainsKey(name))
+            if (this._cache.ContainsKey(name))
                 return;
 
-            _cache[name] = assembly;
+            this._cache[name] = assembly;
         }
     }
 }

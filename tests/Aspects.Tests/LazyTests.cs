@@ -11,8 +11,11 @@ namespace Aspests.Tests
 {
     public class LazyTests
     {
-        [DebuggerDisplay("{DateTime.ToString(\"HH: mm:ss.fffffff\")}")]
-        class ServiceA
+
+	    private static readonly ParallelOptions AllProcessorsExceptOne = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount - 1 };
+
+		[DebuggerDisplay("{DateTime.ToString(\"HH: mm:ss.fffffff\")}")]
+		public class ServiceA
         {
             public DateTime DateTime { get; set; }
 
@@ -20,12 +23,12 @@ namespace Aspests.Tests
 
             public ServiceA(DateTime dateTime, [CallerMemberName] string name = "")
             {
-                DateTime = dateTime;
-                Name = name;
+	            this.DateTime = dateTime;
+	            this.Name = name;
             }
         }
 
-        class TestClass
+        public class TestClass
         {
             [Lazy]
             public ServiceA ServiceA => new ServiceA(DateTime.Now);
@@ -106,7 +109,7 @@ namespace Aspests.Tests
             var t = new TestClass();
 
             var tasks = new Task<ServiceA>[100];
-            for (int i = 0; i < tasks.Length; i++)
+            for (var i = 0; i < tasks.Length; i++)
             {
                 Func<TestClass, ServiceA> func;
 
@@ -147,7 +150,9 @@ namespace Aspests.Tests
                 tasks[i] = new Task<ServiceA>(() => func(t));
             }
 
-            Parallel.ForEach(tasks, new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount - 1 }, task => task.Start());
+            
+			//TODO fix this WaitAll crap
+            Parallel.ForEach(tasks, AllProcessorsExceptOne, task => task.Start());
             Task.WaitAll(tasks);
 
             var result = tasks.GroupBy(o => o.Result.DateTime);
@@ -166,7 +171,7 @@ namespace Aspests.Tests
             public static string SMethod => "";
         }
 
-        class StaticTestB
+        public class StaticTestB
         {
             [Lazy]
             public static ServiceA ServiceA => new ServiceA(DateTime.Now);

@@ -1,16 +1,17 @@
+﻿using System.Threading.Tasks;
 using AspectInjector.Analyzer.Analyzers;
+using AspectInjector.Analyzer.Tests.Helpers;
 using AspectInjector.Rules;
 using Microsoft.CodeAnalysis.Diagnostics;
-using TestHelper;
 using Xunit;
 
-namespace AspectInjector.Analyzer.Test.Analyzers
+namespace AspectInjector.Analyzer.Tests.Analyzers
 {
     public class ArgumentAnalyzerTests : CorrectDefinitionsTests
     {
     
         [Fact]
-        public void Argument_Should_Be_Part_Of_Advice()
+        public async Task Argument_Should_Be_Part_Of_Advice()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -23,11 +24,11 @@ namespace TestNameSpace
     }
 }";
             var expected = DiagnosticResult.From(EffectRules.ArgumentMustBePartOfAdvice.AsDescriptor(), 7, 36);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
         }
 
         [Fact]
-        public void Argument_Types_Must_Be_Valid()
+        public async Task Argument_Types_Must_Be_Valid()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -65,7 +66,7 @@ namespace TestNameSpace
                 DiagnosticResult.From(EffectRules.ArgumentMustHaveValidType.AsDescriptor(), 17, 14),
 
             };
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()

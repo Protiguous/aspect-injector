@@ -1,4 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeRefactorings;
 using Microsoft.CodeAnalysis.CSharp;
@@ -54,11 +54,12 @@ namespace AspectInjector.Analyzer.Refactorings
 
             var newClass = @class.WithAttributeLists(@class.AttributeLists.Add(
                 AttributeList(
-                    SeparatedList(new[]{
+                    SeparatedList([
                         Attribute(IdentifierName(nameof(Mixin)),
-                            AttributeArgumentList(SeparatedList(new[]{ AttributeArgument(TypeOfExpression(baseType.WithoutTrivia())) }))
+                            AttributeArgumentList(SeparatedList([AttributeArgument(TypeOfExpression(baseType.WithoutTrivia()))
+                            ]))
                             )
-                    })
+                    ])
                     ).WithAdditionalAnnotations(Formatter.Annotation)
                 ));
 

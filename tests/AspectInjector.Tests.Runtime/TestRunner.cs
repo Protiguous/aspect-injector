@@ -1,261 +1,289 @@
-﻿using AspectInjector.Broker;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using AspectInjector.Tests.Assets;
 using Xunit;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static AspectInjector.Tests.Assets.IAssetIface1Wrapper<AspectInjector.Tests.Assets.Asset1>;
 
 namespace AspectInjector.Tests.Runtime
 {
-    public class TestRunner
-    {
-        private static readonly List<string> _staticCtorEvents;
 
-        public TestRunner()
-        {
-            var a = typeof(TestRunner);
-            TestLog.Reset();
-        }
+	public class TestRunner
+	{
 
-        static TestRunner()
-        {
-            TestLog.Reset(); 
+		private static readonly List<string> _staticCtorEvents;
 
-            var type = typeof(TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>);
-            System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(type.TypeHandle);
+		static TestRunner()
+		{
+			TestLog.Reset();
 
-            _staticCtorEvents = TestLog.Log.ToList();
-            TestLog.Reset();
-        }        
+			var type = typeof(TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>);
+			RuntimeHelpers.RunClassConstructor(type.TypeHandle);
 
-        public List<string> GetConstructorArgsSequence(string prefix)
-        {
-            return new List<string> {
-                $"{prefix}:{GetArgEvent(TestAssets.asset1)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset2)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset3)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset4)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset1)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset2)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset3)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset4)}",
-                $"{prefix}:{GetArgEvent(default(int))}",
-                $"{prefix}:{GetArgEvent(null)}",
-                $"{prefix}:{GetArgEvent(default(short))}",
-                $"{prefix}:{GetArgEvent(null)}",
-            };
-        }
+			_staticCtorEvents = TestLog.Log.ToList();
+			TestLog.Reset();
+		}
 
-        public List<string> GetMethodArgsSequence(string prefix)
-        {
-            return new List<string> {
-                $"{prefix}:{GetArgEvent(TestAssets.asset1)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset2)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset3)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset4)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset5)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset1)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset2)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset3)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset4)}",
-                $"{prefix}:{GetArgEvent(TestAssets.asset5)}",
-                $"{prefix}:{GetArgEvent(default(int))}",
-                $"{prefix}:{GetArgEvent(null)}",
-                $"{prefix}:{GetArgEvent(default(short))}",
-                $"{prefix}:{GetArgEvent(null)}",
-                $"{prefix}:{GetArgEvent(null)}",
-            };
-        }
+		public TestRunner()
+		{
+			var a = typeof(TestRunner);
+			TestLog.Reset();
+		}
 
-        private string GetArgEvent(object o)
-        {
-            if (o == null)
-                return $"Arguments:null";
-            return $"Arguments:{o.GetType().Name}:{o.ToString()}";
-        }
+		public List<string> GetConstructorArgsSequence(string prefix)
+		{
+			return new List<string>
+			{
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset1)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset2)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset3)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset4)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset1)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset2)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset3)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset4)}",
+				$"{prefix}:{this.GetArgEvent(default(int))}",
+				$"{prefix}:{this.GetArgEvent(null)}",
+				$"{prefix}:{this.GetArgEvent(default(short))}",
+				$"{prefix}:{this.GetArgEvent(null)}"
+			};
+		}
 
-        public void ExecConstructor()
-        {
-            int ao1;
-            Asset1 ao2;
-            short ao3;
-            IAssetIface1<Asset1> ao4;
+		public List<string> GetMethodArgsSequence(string prefix)
+		{
+			return new List<string>
+			{
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset1)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset2)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset3)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset4)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset5)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset1)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset2)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset3)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset4)}",
+				$"{prefix}:{this.GetArgEvent(TestAssets.asset5)}",
+				$"{prefix}:{this.GetArgEvent(default(int))}",
+				$"{prefix}:{this.GetArgEvent(null)}",
+				$"{prefix}:{this.GetArgEvent(default(short))}",
+				$"{prefix}:{this.GetArgEvent(null)}",
+				$"{prefix}:{this.GetArgEvent(null)}"
+			};
+		}
 
-            var test = new TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3, TestAssets.asset4, ref TestAssets.asset1, ref TestAssets.asset2, ref TestAssets.asset3, ref TestAssets.asset4, out ao1, out ao2, out ao3, out ao4);
+		private string GetArgEvent(object o)
+		{
+			if (o == null)
+			{
+				return "Arguments:null";
+			}
 
-            Assert.Equal(TestAssets.asset1, ao1);
-            Assert.Equal(TestAssets.asset2, ao2);
-            Assert.Equal(TestAssets.asset3, ao3);
-            Assert.Equal(TestAssets.asset4, ao4);
-        }
+			return $"Arguments:{o.GetType().Name}:{o}";
+		}
 
-        public void ExecStaticConstructor()
-        {
-            _staticCtorEvents.ForEach(TestLog.Write);
-        }
+		public void ExecConstructor()
+		{
+			int ao1;
+			Asset1 ao2;
+			short ao3;
+			IAssetIface1<Asset1> ao4;
 
-        public void ExecMethod()
-        {
-            int ao1;
-            Asset1 ao2;
-            short ao3;
-            IAssetIface1<Asset1> ao4;
-            Asset2 ao5;
+			var test = new TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3,
+				TestAssets.asset4, ref TestAssets.asset1, ref TestAssets.asset2, ref TestAssets.asset3, ref TestAssets.asset4, out ao1, out ao2,
+				out ao3, out ao4);
 
-            var result = new TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>().Fact<Asset2>(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3, TestAssets.asset4, TestAssets.asset5, ref TestAssets.asset1, ref TestAssets.asset2, ref TestAssets.asset3, ref TestAssets.asset4, ref TestAssets.asset5, out ao1, out ao2, out ao3, out ao4, out ao5);
+			Assert.Equal(TestAssets.asset1, ao1);
+			Assert.Equal(TestAssets.asset2, ao2);
+			Assert.Equal(TestAssets.asset3, ao3);
+			Assert.Equal(TestAssets.asset4, ao4);
+		}
 
-            Assert.Equal(TestAssets.asset1, ao1);
-            Assert.Equal(TestAssets.asset2, ao2);
-            Assert.Equal(TestAssets.asset3, ao3);
-            Assert.Equal(TestAssets.asset4, ao4);
-            Assert.Equal(TestAssets.asset5, ao5);
+		public void ExecStaticConstructor()
+		{
+			_staticCtorEvents.ForEach(TestLog.Write);
+		}
 
-            Assert.Equal(TestAssets.asset1, result.Item1);
-            Assert.Equal(TestAssets.asset2, result.Item2);
-            Assert.Equal(TestAssets.asset3, result.Item3);
-            Assert.Equal(TestAssets.asset4, result.Item4);
-            Assert.Equal(TestAssets.asset5, result.Item5);
-        }
+		public void ExecMethod()
+		{
+			int ao1;
+			Asset1 ao2;
+			short ao3;
+			IAssetIface1<Asset1> ao4;
+			Asset2 ao5;
 
-        public void ExecStaticMethod()
-        {
-            int ao1;
-            Asset1 ao2;
-            short ao3;
-            IAssetIface1<Asset1> ao4;
-            Asset2 ao5;
+			var result = new TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>().Fact(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3,
+				TestAssets.asset4, TestAssets.asset5, ref TestAssets.asset1, ref TestAssets.asset2, ref TestAssets.asset3, ref TestAssets.asset4,
+				ref TestAssets.asset5, out ao1, out ao2, out ao3, out ao4, out ao5);
 
-            var result = TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>.TestStaticMethod<Asset2>(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3, TestAssets.asset4, TestAssets.asset5, ref TestAssets.asset1, ref TestAssets.asset2, ref TestAssets.asset3, ref TestAssets.asset4, ref TestAssets.asset5, out ao1, out ao2, out ao3, out ao4, out ao5);
+			Assert.Equal(TestAssets.asset1, ao1);
+			Assert.Equal(TestAssets.asset2, ao2);
+			Assert.Equal(TestAssets.asset3, ao3);
+			Assert.Equal(TestAssets.asset4, ao4);
+			Assert.Equal(TestAssets.asset5, ao5);
 
-            Assert.Equal(TestAssets.asset1, ao1);
-            Assert.Equal(TestAssets.asset2, ao2);
-            Assert.Equal(TestAssets.asset3, ao3);
-            Assert.Equal(TestAssets.asset4, ao4);
-            Assert.Equal(TestAssets.asset5, ao5);
+			Assert.Equal(TestAssets.asset1, result.Item1);
+			Assert.Equal(TestAssets.asset2, result.Item2);
+			Assert.Equal(TestAssets.asset3, result.Item3);
+			Assert.Equal(TestAssets.asset4, result.Item4);
+			Assert.Equal(TestAssets.asset5, result.Item5);
+		}
 
-            Assert.Equal(TestAssets.asset1, result.Item1);
-            Assert.Equal(TestAssets.asset2, result.Item2);
-            Assert.Equal(TestAssets.asset3, result.Item3);
-            Assert.Equal(TestAssets.asset4, result.Item4);
-            Assert.Equal(TestAssets.asset5, result.Item5);
-        }
+		public void ExecStaticMethod()
+		{
+			int ao1;
+			Asset1 ao2;
+			short ao3;
+			IAssetIface1<Asset1> ao4;
+			Asset2 ao5;
 
-        public void ExecSetter()
-        {
-            new TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>().TestProperty = new Tuple<short, IAssetIface1<Asset1>>(TestAssets.asset3, TestAssets.asset4);
-        }
+			var result = TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>.TestStaticMethod(TestAssets.asset1, TestAssets.asset2,
+				TestAssets.asset3, TestAssets.asset4, TestAssets.asset5, ref TestAssets.asset1, ref TestAssets.asset2, ref TestAssets.asset3,
+				ref TestAssets.asset4, ref TestAssets.asset5, out ao1, out ao2, out ao3, out ao4, out ao5);
 
-        public void ExecStaticSetter()
-        {
-            TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>.TestStaticProperty = new Tuple<short, IAssetIface1<Asset1>>(TestAssets.asset3, TestAssets.asset4);
-        }
+			Assert.Equal(TestAssets.asset1, ao1);
+			Assert.Equal(TestAssets.asset2, ao2);
+			Assert.Equal(TestAssets.asset3, ao3);
+			Assert.Equal(TestAssets.asset4, ao4);
+			Assert.Equal(TestAssets.asset5, ao5);
 
-        public void ExecGetter()
-        {
-            var result = new TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>().TestProperty;
-        }
+			Assert.Equal(TestAssets.asset1, result.Item1);
+			Assert.Equal(TestAssets.asset2, result.Item2);
+			Assert.Equal(TestAssets.asset3, result.Item3);
+			Assert.Equal(TestAssets.asset4, result.Item4);
+			Assert.Equal(TestAssets.asset5, result.Item5);
+		}
 
-        public void ExecStaticGetter()
-        {
-            var result = TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>.TestStaticProperty;
-        }
+		public void ExecSetter()
+		{
+			new TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>().TestProperty =
+				new Tuple<short, IAssetIface1<Asset1>>(TestAssets.asset3, TestAssets.asset4);
+		}
 
-        public void ExecAdd()
-        {
-            new TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>().TestEvent += (s, e) => { };
-        }
+		public void ExecStaticSetter()
+		{
+			TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>.TestStaticProperty =
+				new Tuple<short, IAssetIface1<Asset1>>(TestAssets.asset3, TestAssets.asset4);
+		}
 
-        public void ExecStaticAdd()
-        {
-            TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>.TestStaticEvent += (s, e) => { };
-        }
+		public void ExecGetter()
+		{
+			var result = new TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>().TestProperty;
+		}
 
-        public void ExecRemove()
-        {
-            new TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>().TestEvent -= (s, e) => { };
-        }
+		public void ExecStaticGetter()
+		{
+			var result = TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>.TestStaticProperty;
+		}
 
-        public void ExecStaticRemove()
-        {
-            TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>.TestStaticEvent -= (s, e) => { };
-        }
+		public void ExecAdd()
+		{
+			new TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>().TestEvent += (s, e) => { };
+		}
 
-        public void ExecIteratorMethod()
-        {
-            var result = new TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>().TestIteratorMethod<Asset2>(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3, TestAssets.asset4, TestAssets.asset5).Last();
+		public void ExecStaticAdd()
+		{
+			TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>.TestStaticEvent += (s, e) => { };
+		}
 
-            Assert.Equal(TestAssets.asset1, result.Item1);
-            Assert.Equal(TestAssets.asset2, result.Item2);
-            Assert.Equal(TestAssets.asset3, result.Item3);
-            Assert.Equal(TestAssets.asset4, result.Item4);
-            Assert.Equal(TestAssets.asset5, result.Item5);
-        }
+		public void ExecRemove()
+		{
+			new TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>().TestEvent -= (s, e) => { };
+		}
 
-        public void ExecStaticIteratorMethod()
-        {
-            var result = TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>.TestStaticIteratorMethod<Asset2>(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3, TestAssets.asset4, TestAssets.asset5).Last();
+		public void ExecStaticRemove()
+		{
+			TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>.TestStaticEvent -= (s, e) => { };
+		}
 
-            Assert.Equal(TestAssets.asset1, result.Item1);
-            Assert.Equal(TestAssets.asset2, result.Item2);
-            Assert.Equal(TestAssets.asset3, result.Item3);
-            Assert.Equal(TestAssets.asset4, result.Item4);
-            Assert.Equal(TestAssets.asset5, result.Item5);
-        }
+		public void ExecIteratorMethod()
+		{
+			var result = new TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>().TestIteratorMethod(TestAssets.asset1, TestAssets.asset2,
+				TestAssets.asset3, TestAssets.asset4, TestAssets.asset5).Last();
 
-        public void ExecAsyncTypedTaskMethod()
-        {
-            var result = new TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>().TestAsyncMethod1<Asset2>(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3, TestAssets.asset4, TestAssets.asset5).Result;
+			Assert.Equal(TestAssets.asset1, result.Item1);
+			Assert.Equal(TestAssets.asset2, result.Item2);
+			Assert.Equal(TestAssets.asset3, result.Item3);
+			Assert.Equal(TestAssets.asset4, result.Item4);
+			Assert.Equal(TestAssets.asset5, result.Item5);
+		}
 
-            Assert.Equal(TestAssets.asset1, result.Item1);
-            Assert.Equal(TestAssets.asset2, result.Item2);
-            Assert.Equal(TestAssets.asset3, result.Item3);
-            Assert.Equal(TestAssets.asset4, result.Item4);
-            Assert.Equal(TestAssets.asset5, result.Item5);
-        }
+		public void ExecStaticIteratorMethod()
+		{
+			var result = TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>.TestStaticIteratorMethod(TestAssets.asset1, TestAssets.asset2,
+				TestAssets.asset3, TestAssets.asset4, TestAssets.asset5).Last();
 
-        public void ExecStaticAsyncTypedTaskMethod()
-        {
-            var result = TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>.TestStaticAsyncMethod1<Asset2>(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3, TestAssets.asset4, TestAssets.asset5).Result;
+			Assert.Equal(TestAssets.asset1, result.Item1);
+			Assert.Equal(TestAssets.asset2, result.Item2);
+			Assert.Equal(TestAssets.asset3, result.Item3);
+			Assert.Equal(TestAssets.asset4, result.Item4);
+			Assert.Equal(TestAssets.asset5, result.Item5);
+		}
 
-            Assert.Equal(TestAssets.asset1, result.Item1);
-            Assert.Equal(TestAssets.asset2, result.Item2);
-            Assert.Equal(TestAssets.asset3, result.Item3);
-            Assert.Equal(TestAssets.asset4, result.Item4);
-            Assert.Equal(TestAssets.asset5, result.Item5);
-        }
+		public void ExecAsyncTypedTaskMethod()
+		{
+			var result = new TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>().TestAsyncMethod1(TestAssets.asset1, TestAssets.asset2,
+				TestAssets.asset3, TestAssets.asset4, TestAssets.asset5).Result;
 
-        public void ExecAsyncTaskMethod()
-        {
-            new TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>().TestAsyncMethod2<Asset2>(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3, TestAssets.asset4, TestAssets.asset5).Wait();
-        }
+			Assert.Equal(TestAssets.asset1, result.Item1);
+			Assert.Equal(TestAssets.asset2, result.Item2);
+			Assert.Equal(TestAssets.asset3, result.Item3);
+			Assert.Equal(TestAssets.asset4, result.Item4);
+			Assert.Equal(TestAssets.asset5, result.Item5);
+		}
 
-        public void ExecStaticAsyncTaskMethod()
-        {
-            TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>.TestStaticAsyncMethod2<Asset2>(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3, TestAssets.asset4, TestAssets.asset5).Wait();
-        }
+		public void ExecStaticAsyncTypedTaskMethod()
+		{
+			var result = TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>.TestStaticAsyncMethod1(TestAssets.asset1, TestAssets.asset2,
+				TestAssets.asset3, TestAssets.asset4, TestAssets.asset5).Result;
 
-        public void ExecAsyncVoidMethod()
-        {
-            new TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>().TestAsyncMethod3<Asset2>(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3, TestAssets.asset4, TestAssets.asset5);
-            Task.Delay(300).Wait();
-        }
+			Assert.Equal(TestAssets.asset1, result.Item1);
+			Assert.Equal(TestAssets.asset2, result.Item2);
+			Assert.Equal(TestAssets.asset3, result.Item3);
+			Assert.Equal(TestAssets.asset4, result.Item4);
+			Assert.Equal(TestAssets.asset5, result.Item5);
+		}
 
-        public void ExecStaticAsyncVoidMethod()
-        {
-            TestClassWrapper<short>.TestClass<IAssetIface1<Asset1>>.TestStaticAsyncMethod3<Asset2>(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3, TestAssets.asset4, TestAssets.asset5);
-            Task.Delay(300).Wait();
-        }
+		public void ExecAsyncTaskMethod()
+		{
+			new TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>().TestAsyncMethod2(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3,
+				TestAssets.asset4, TestAssets.asset5).Wait();
+		}
 
-        public void CheckSequence(IReadOnlyList<string> orderedEvents)
-        {
-            var logEvents = TestLog.Log.Where(e => orderedEvents.Contains(e));
+		public void ExecStaticAsyncTaskMethod()
+		{
+			TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>.TestStaticAsyncMethod2(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3,
+				TestAssets.asset4, TestAssets.asset5).Wait();
+		}
 
-            if (!logEvents.SequenceEqual(orderedEvents))
-                Assert.True(false, string.Join(Environment.NewLine, logEvents));
-        }
-    }
+		public void ExecAsyncVoidMethod()
+		{
+			new TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>().TestAsyncMethod3(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3,
+				TestAssets.asset4, TestAssets.asset5);
+
+			Task.Delay(300).Wait();
+		}
+
+		public void ExecStaticAsyncVoidMethod()
+		{
+			TestClassWrapper<Int16>.TestClass<IAssetIface1<Asset1>>.TestStaticAsyncMethod3(TestAssets.asset1, TestAssets.asset2, TestAssets.asset3,
+				TestAssets.asset4, TestAssets.asset5);
+
+			Task.Delay(300).Wait();
+		}
+
+		public void CheckSequence(IReadOnlyList<string> orderedEvents)
+		{
+			var logEvents = TestLog.Log.Where(e => orderedEvents.Contains(e));
+
+			if (!logEvents.SequenceEqual(orderedEvents))
+			{
+				//Assert.Fail(  string.Join(Environment.NewLine, logEvents));
+				Assert.Fail( string.Join(Environment.NewLine, logEvents));
+			}
+		}
+
+	}
+
 }

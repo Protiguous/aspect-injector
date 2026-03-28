@@ -12,7 +12,7 @@ namespace FluentIL.Resolvers
 
         public void AddReference(string assemblyPath)
         {
-            _references.Add(assemblyPath);
+	        this._references.Add(assemblyPath);
         }
 
         protected override AssemblyDefinition LookupAssembly(AssemblyNameReference name, ReaderParameters parameters)
@@ -21,12 +21,12 @@ namespace FluentIL.Resolvers
 
             foreach (var extension in extensions)
             {
-                string file = _references.FirstOrDefault(r => Path.GetFileName(r) == name.Name + extension);
+                string file = this._references.FirstOrDefault(r => Path.GetFileName(r) == name.Name + extension);
                 if (file == null || !File.Exists(file))
                     continue;
                 try
                 {
-                    return GetAssembly(file, parameters);
+                    return this.GetAssembly(file, parameters);
                 }
                 catch (System.BadImageFormatException)
                 {

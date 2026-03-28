@@ -1,101 +1,87 @@
+﻿using System;
 using Microsoft.CodeAnalysis;
-using System;
 
-namespace TestHelper
+namespace AspectInjector.Analyzer.Tests.Helpers
 {
-    /// <summary>
-    /// Location where the diagnostic appears, as determined by path, line number, and column number.
-    /// </summary>
-    public struct DiagnosticResultLocation
-    {
-        public DiagnosticResultLocation(string path, int line, int column)
-        {
-            if (line < -1)
-            {
-                throw new ArgumentOutOfRangeException(nameof(line), "line must be >= -1");
-            }
 
-            if (column < -1)
-            {
-                throw new ArgumentOutOfRangeException(nameof(column), "column must be >= -1");
-            }
+	/// <summary>
+	///     Location where the diagnostic appears, as determined by path, line number, and column number.
+	/// </summary>
+	public struct DiagnosticResultLocation
+	{
 
-            this.Path = path;
-            this.Line = line;
-            this.Column = column;
-        }
+		public DiagnosticResultLocation(String path, Int32 line, Int32 column)
+		{
+			if (line < -1)
+			{
+				throw new ArgumentOutOfRangeException(nameof( line ), "line must be >= -1");
+			}
 
-        public string Path { get; }
-        public int Line { get; }
-        public int Column { get; }
-    }
+			if (column < -1)
+			{
+				throw new ArgumentOutOfRangeException(nameof( column ), "column must be >= -1");
+			}
 
-    /// <summary>
-    /// Struct that stores information about a Diagnostic appearing in a source
-    /// </summary>
-    public struct DiagnosticResult
-    {
-        public static DiagnosticResult From(DiagnosticDescriptor diagnostic, int line, int column, string path = null)
-        {
-            return new DiagnosticResult
-            {
-                Id = diagnostic.Id,
-                Message = null,
-                Severity = diagnostic.DefaultSeverity,
-                Locations =
-                    new[] {
-                            new DiagnosticResultLocation("Test0.cs", line, column)
-                        }
-            };
-        }
+			this.Path = path;
+			this.Line = line;
+			this.Column = column;
+		}
 
-        private DiagnosticResultLocation[] locations;
+		public String Path { get; }
 
-        public DiagnosticResultLocation[] Locations
-        {
-            get
-            {
-                if (this.locations == null)
-                {
-                    this.locations = new DiagnosticResultLocation[] { };
-                }
-                return this.locations;
-            }
+		public Int32 Line { get; }
 
-            set
-            {
-                this.locations = value;
-            }
-        }
+		public Int32 Column { get; }
 
-        public DiagnosticSeverity Severity { get; set; }
+	}
 
-        public string Id { get; set; }
+	/// <summary>
+	///     Struct that stores information about a Diagnostic appearing in a source
+	/// </summary>
+	public struct DiagnosticResult
+	{
 
-        public string Message { get; set; }
+		public static DiagnosticResult From(DiagnosticDescriptor diagnostic, Int32 line, Int32 column, String path = null)
+		{
+			return new DiagnosticResult
+			{
+				Id = diagnostic.Id,
+				Message = null,
+				Severity = diagnostic.DefaultSeverity,
+				Locations =
+					[new DiagnosticResultLocation("Test0.cs", line, column)]
+			};
+		}
 
-        public string Path
-        {
-            get
-            {
-                return this.Locations.Length > 0 ? this.Locations[0].Path : "";
-            }
-        }
+		private DiagnosticResultLocation[] locations;
 
-        public int Line
-        {
-            get
-            {
-                return this.Locations.Length > 0 ? this.Locations[0].Line : -1;
-            }
-        }
+		public DiagnosticResultLocation[] Locations
+		{
+			get
+			{
+				if (this.locations == null)
+				{
+					this.locations = [];
+				}
 
-        public int Column
-        {
-            get
-            {
-                return this.Locations.Length > 0 ? this.Locations[0].Column : -1;
-            }
-        }
-    }
+				return this.locations;
+			}
+
+			set => this.locations = value;
+		}
+
+		public DiagnosticSeverity Severity { get; set; }
+
+		public String Id { get; set; }
+
+		public String Message { get; set; }
+
+		public String Path => this.Locations.Length > 0 ? this.Locations[0].Path : "";
+
+		public Int32 Line => this.Locations.Length > 0 ? this.Locations[0].Line : -1;
+
+		public Int32 Column => this.Locations.Length > 0 ? this.Locations[0].Column : -1;
+
+	}
+
 }

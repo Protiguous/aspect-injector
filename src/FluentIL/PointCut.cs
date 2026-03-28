@@ -21,51 +21,51 @@ namespace FluentIL
         private readonly Instruction _refInst;
         private readonly MethodBody _body;
 
-        public MethodDefinition Method => _body.Method;
-        public TypeSystem TypeSystem => _body.Method.Module.TypeSystem;
+        public MethodDefinition Method => this._body.Method;
+        public TypeSystem TypeSystem => this._body.Method.Module.TypeSystem;
 
-        private Collection<Instruction> Instructions => _body.Instructions;
+        private Collection<Instruction> Instructions => this._body.Instructions;
 
         public Cut(MethodBody body, bool entry, bool exit)
         {
             if (!entry && !exit) throw new ArgumentException("Should be either entry or exit");
 
-            _body = body;
-            _entry = entry;
-            _exit = exit;
-            _refInst = null;
+            this._body = body;
+            this._entry = entry;
+            this._exit = exit;
+            this._refInst = null;
         }
 
         public Cut(MethodBody body, Instruction instruction)
         {
-            _refInst = instruction ?? throw new ArgumentNullException(nameof(instruction));
-            _body = body ?? throw new ArgumentNullException(nameof(body));
+	        this._refInst = instruction ?? throw new ArgumentNullException(nameof(instruction));
+	        this._body = body ?? throw new ArgumentNullException(nameof(body));
 
-            _entry = false;
-            _exit = false;
+	        this._entry = false;
+	        this._exit = false;
         }
 
         public Cut Next()
         {
-            if (_entry) return this;
-            if (Instructions[Instructions.Count - 1] == _refInst) return new Cut(_body, false, true);
-            return new Cut(_body, _refInst.Next);
+            if (this._entry) return this;
+            if (this.Instructions[this.Instructions.Count - 1] == this._refInst) return new Cut(this._body, false, true);
+            return new Cut(this._body, this._refInst.Next);
         }
 
         public Cut Prev()
         {
-            if (_exit) return this;
-            if (Instructions.Count != 0 && Instructions[0] == _refInst) return new Cut(_body, true, false);
-            return new Cut(_body, _refInst.Previous);
+            if (this._exit) return this;
+            if (this.Instructions.Count != 0 && this.Instructions[0] == this._refInst) return new Cut(this._body, true, false);
+            return new Cut(this._body, this._refInst.Previous);
         }
 
         public Cut SkipNops()
         {
-            if (_exit) return this;
-            var i = _entry ? _body.Instructions[0] : _refInst;
+            if (this._exit) return this;
+            var i = this._entry ? this._body.Instructions[0] : this._refInst;
             while (i.OpCode == OpCodes.Nop)
                 i = i.Next;
-            return new Cut(_body, i);
+            return new Cut(this._body, i);
         }
 
         public Cut Here(PointCut pc)
@@ -76,30 +76,30 @@ namespace FluentIL
 
         public Cut Write(Instruction instruction)
         {
-            CutEvents.OnModify(_body);
+            CutEvents.OnModify(this._body);
 
-            if (_entry)
+            if (this._entry)
             {
-                Instructions.Insert(0, instruction);
+	            this.Instructions.Insert(0, instruction);
 
-                foreach (var handler in _body.ExceptionHandlers.Where(h => h.HandlerStart == null).ToList())
-                    handler.HandlerStart = _refInst;
+                foreach (var handler in this._body.ExceptionHandlers.Where(h => h.HandlerStart == null).ToList())
+                    handler.HandlerStart = this._refInst;
             }
-            else if (_exit || _refInst == Instructions[Instructions.Count - 1])
+            else if (this._exit || this._refInst == this.Instructions[this.Instructions.Count - 1])
             {
-                Instructions.Add(instruction);
+	            this.Instructions.Add(instruction);
 
-                if (!_exit)
-                    foreach (var handler in _body.ExceptionHandlers.Where(h => h.HandlerEnd == null).ToList())
-                        handler.HandlerEnd = _refInst;
+                if (!this._exit)
+                    foreach (var handler in this._body.ExceptionHandlers.Where(h => h.HandlerEnd == null).ToList())
+                        handler.HandlerEnd = this._refInst;
             }
             else
             {
-                var index = Instructions.IndexOf(_refInst) + 1;
-                Instructions.Insert(index, instruction);
+                var index = this.Instructions.IndexOf(this._refInst) + 1;
+                this.Instructions.Insert(index, instruction);
             }
 
-            return new Cut(_body, instruction);
+            return new Cut(this._body, instruction);
         }
 
         public Instruction Emit(OpCode opCode, object operand)
@@ -107,10 +107,10 @@ namespace FluentIL
             switch (operand)
             {
                 case Cut pc: return Instruction.Create(opCode, pc._refInst ?? throw new InvalidOperationException());
-                case TypeReference tr: return Instruction.Create(opCode, Method.Module.ImportReference(tr));
-                case MethodReference mr: return Instruction.Create(opCode, Method.Module.ImportReference(mr));
+                case TypeReference tr: return Instruction.Create(opCode, this.Method.Module.ImportReference(tr));
+                case MethodReference mr: return Instruction.Create(opCode, this.Method.Module.ImportReference(mr));
                 case CallSite cs: return Instruction.Create(opCode, cs);
-                case FieldReference fr: return Instruction.Create(opCode, Method.Module.ImportReference(fr));
+                case FieldReference fr: return Instruction.Create(opCode, this.Method.Module.ImportReference(fr));
                 case string str: return Instruction.Create(opCode, str);
                 case char c: return Instruction.Create(opCode, c);
                 case byte b: return Instruction.Create(opCode, b);
@@ -137,34 +137,34 @@ namespace FluentIL
 
         public Cut Replace(Instruction instruction)
         {
-            CutEvents.OnModify(_body);
+            CutEvents.OnModify(this._body);
 
-            if (_exit || _entry) return Write(instruction);
+            if (this._exit || this._entry) return this.Write(instruction);
 
-            Redirect(_refInst, instruction, instruction);
-            Instructions[Instructions.IndexOf(_refInst)] = instruction;
+            this.Redirect(this._refInst, instruction, instruction);
+            this.Instructions[this.Instructions.IndexOf(this._refInst)] = instruction;
 
-            return new Cut(_body, instruction);
+            return new Cut(this._body, instruction);
         }
 
         public Cut Remove()
         {
-            CutEvents.OnModify(_body);
+            CutEvents.OnModify(this._body);
 
-            var prevCut = Prev();
+            var prevCut = this.Prev();
 
-            var next = _refInst.Next;
-            var prev = _refInst.Previous;
+            var next = this._refInst.Next;
+            var prev = this._refInst.Previous;
 
-            Redirect(_refInst, next, prev);
-            Instructions.Remove(_refInst);
+            this.Redirect(this._refInst, next, prev);
+            this.Instructions.Remove(this._refInst);
 
             return prevCut;
         }
 
         private void Redirect(Instruction source, Instruction next, Instruction prev)
         {
-            var refs = Instructions.Where(i => i.Operand == source).ToList();
+            var refs = this.Instructions.Where(i => i.Operand == source).ToList();
 
             if (refs.Any())
             {
@@ -175,7 +175,7 @@ namespace FluentIL
                     rref.Operand = next;
             }
 
-            foreach (var handler in _body.ExceptionHandlers)
+            foreach (var handler in this._body.ExceptionHandlers)
             {
                 if (handler.FilterStart == source)
                     handler.FilterStart = prev ?? throw new InvalidOperationException();

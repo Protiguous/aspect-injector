@@ -1,4 +1,4 @@
-using Aspects.Cache;
+﻿using Aspects.Cache;
 using System;
 using System.Threading.Tasks;
 using Xunit;
@@ -11,52 +11,52 @@ namespace Aspests.Tests
     {
         class TestClass
         {
-            [MemoryCache(3, PerInstanceCache = false)]
+            [MemoryCache(1, PerInstanceCache = false)]
             public int? NullableArg(int? ok) => ok;
 
-            [MemoryCache(3, PerInstanceCache = false)]
+            [MemoryCache(1, PerInstanceCache = false)]
             public int? NullableArg(bool? ok) => (ok ?? false) ? 1 : null;
 
-            [MemoryCache(3, PerInstanceCache = true)]
+            [MemoryCache(1, PerInstanceCache = true)]
             public int? NullableArgPerInstance(bool? ok) => (ok ?? false) ? 1 : null;
 
-            [MemoryCache(3, PerInstanceCache = false)]
+            [MemoryCache(1, PerInstanceCache = false)]
             public int? Nullable(bool ok) => ok ? 1 : null;
 
-            [MemoryCache(3, PerInstanceCache = true)]
+            [MemoryCache(1, PerInstanceCache = true)]
             public int? NullablePerInstance(bool ok) => ok ? 1 : null;
 
-            [MemoryCache(3, PerInstanceCache = false)]
+            [MemoryCache(1, PerInstanceCache = false)]
             public void Do(ref int a) => a++;
 
-            [MemoryCache(3, PerInstanceCache = false)]
+            [MemoryCache(1, PerInstanceCache = false)]
             public Task DoTask(ref int a)
             {
                 a++;
                 return Task.CompletedTask;
             }
 
-            [MemoryCache(3, PerInstanceCache = false)]
+            [MemoryCache(1, PerInstanceCache = false)]
             public long Calculate(int a, string b) =>
                 a + b.GetHashCode() + DateTime.Now.Ticks;
 
-            [MemoryCache(3, PerInstanceCache = true)]
+            [MemoryCache(1, PerInstanceCache = true)]
             public long CalculatePerInstance(int a, string b) =>
                 a + b.GetHashCode() + DateTime.Now.Ticks;
 
-            [MemoryCache(3, PerInstanceCache = false)]
+            [MemoryCache(1, PerInstanceCache = false)]
             public long Calculate(int a, int b) =>
                 a + b + DateTime.Now.Ticks;
 
-            [MemoryCache(3, PerInstanceCache = false)]
+            [MemoryCache(1, PerInstanceCache = false)]
             public Task<long> CalculateTask(int a, string b) =>
                 Task.FromResult(a + b.GetHashCode() + DateTime.Now.Ticks);
 
-            [MemoryCache(3, PerInstanceCache = false)]
+            [MemoryCache(1, PerInstanceCache = false)]
             public async Task<long> CalculateTaskAsync(int a, string b) =>
                 await Task.FromResult(a + b.GetHashCode() + DateTime.Now.Ticks);
 
-            [MemoryCache(3, PerInstanceCache = false)]
+            [MemoryCache( 1, PerInstanceCache = false)]
             public static long CalculateStatic(int a, string b) =>
                 a + b.GetHashCode() + DateTime.Now.Ticks;
         }
@@ -72,7 +72,7 @@ namespace Aspests.Tests
             var result2 = target.Calculate(101, "test1");
             await Task.Delay(10);
             var result3 = target.Calculate(10, "test");
-            await Task.Delay(3000);
+            await Task.Delay(1100);
             var result4 = target.Calculate(10, "test");
 
             Assert.Equal(expected, result);
@@ -115,7 +115,7 @@ namespace Aspests.Tests
             var result2 = TestClass.CalculateStatic(301, "test1");
             await Task.Delay(10);
             var result3 = TestClass.CalculateStatic(30, "test");
-            await Task.Delay(3000);
+            await Task.Delay(1100);
             var result4 = TestClass.CalculateStatic(30, "test");
 
             Assert.Equal(expected, result);
@@ -135,7 +135,7 @@ namespace Aspests.Tests
             var result2 = await target.CalculateTask(401, "test1");
             await Task.Delay(10);
             var result3 = await target.CalculateTask(40, "test");
-            await Task.Delay(3000);
+            await Task.Delay(1100);
             var result4 = await target.CalculateTask(40, "test");
 
             Assert.Equal(expected, result);
@@ -155,7 +155,7 @@ namespace Aspests.Tests
             var result2 = await target.CalculateTaskAsync(501, "test1");
             await Task.Delay(10);
             var result3 = await target.CalculateTaskAsync(50, "test");
-            await Task.Delay(3000);
+            await Task.Delay(1100);
             var result4 = await target.CalculateTaskAsync(50, "test");
 
             Assert.Equal(expected, result);

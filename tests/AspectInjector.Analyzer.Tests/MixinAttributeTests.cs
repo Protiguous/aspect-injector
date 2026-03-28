@@ -1,25 +1,26 @@
+﻿using System.Threading.Tasks;
 using AspectInjector.Analyzer.Analyzers;
 using AspectInjector.Analyzer.CodeFixes;
+using AspectInjector.Analyzer.Tests.Helpers;
 using AspectInjector.Rules;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.Diagnostics;
-using TestHelper;
 using Xunit;
 
-namespace AspectInjector.Analyzer.Test
+namespace AspectInjector.Analyzer.Tests
 {
-    public class MixinAnalyzerTests : CodeFixVerifier
+    public class MixinAnalyzerTests : Verifiers.CodeFixVerifier
     {
         [Fact]
-        public void NoCode_NoDiagnostics()
+        public async Task NoCode_NoDiagnostics()
         {
             var test = @"";
 
-            VerifyCSharpDiagnostic(test);
+            await this.VerifyCSharpDiagnostic(test);
         }
 
         [Fact]
-        public void Can_Mixin_Only_Interfaces()
+        public async Task Can_Mixin_Only_Interfaces()
         {
             var test = @"  
 using System;
@@ -42,7 +43,7 @@ using AspectInjector.Broker;
         class DummyClass{}
     }";
             var expected = DiagnosticResult.From(EffectRules.MixinSupportsOnlyInterfaces.AsDescriptor(), 12, 10);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
 
             //        var fixtest = @"
             //using System;
@@ -62,7 +63,7 @@ using AspectInjector.Broker;
         }
 
         [Fact]
-        public void Mixin_Should_Implement_Interface()
+        public async Task Mixin_Should_Implement_Interface()
         {
             var test = @"  
 using System;
@@ -85,7 +86,7 @@ using AspectInjector.Broker;
         class DummyClass{}
     }";
             var expected = DiagnosticResult.From(EffectRules.MixinSupportsOnlyAspectInterfaces.AsDescriptor(), 12, 10);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
 
             var fixtest = @"  
 using System;
@@ -107,11 +108,11 @@ using AspectInjector.Broker;
         interface IDummyInterface{}
         class DummyClass{}
     }";
-            VerifyCSharpFix(test, fixtest);
+            await this.VerifyCSharpFix(test, fixtest);
         }
 
         [Fact]
-        public void Mixin_Should_Implement_Interface_With_BaseClass()
+        public async Task Mixin_Should_Implement_Interface_With_BaseClass()
         {
             var test = @"  
 using System;
@@ -138,7 +139,7 @@ using AspectInjector.Broker;
             var expected1 = DiagnosticResult.From(EffectRules.MixinSupportsOnlyAspectInterfaces.AsDescriptor(), 12, 10);
             var expected2 = DiagnosticResult.From(EffectRules.MixinSupportsOnlyAspectInterfaces.AsDescriptor(), 13, 10);
 
-            VerifyCSharpDiagnostic(test, expected1, expected2);
+            await this.VerifyCSharpDiagnostic(test, expected1, expected2);
 
             var fixtest = @"  
 using System;
@@ -162,12 +163,12 @@ using AspectInjector.Broker;
         interface IDummyInterface2{}
         class DummyClass{}
     }";
-            VerifyCSharpFix(test, fixtest);
+            await this.VerifyCSharpFix(test, fixtest);
         }
 
 
         [Fact]
-        public void Mixin_Should_Be_Part_Of_Aspect()
+        public async Task Mixin_Should_Be_Part_Of_Aspect()
         {
             var test = @"  
 using System;
@@ -189,7 +190,7 @@ using AspectInjector.Broker;
         class DummyClass{}
     }";
             var expected = DiagnosticResult.From(EffectRules.EffectMustBePartOfAspect.AsDescriptor(), 12, 10);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
 
 //            var fixtest = @"
 //using System;

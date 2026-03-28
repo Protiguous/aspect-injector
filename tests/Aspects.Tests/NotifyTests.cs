@@ -7,7 +7,8 @@ namespace Aspests.Tests
 {
     public class NotifyTests
     {
-        class TestClass
+
+	    public class TestClass
         {
             [Notify]
             [NotifyAlso(nameof(FullName))]
@@ -19,7 +20,7 @@ namespace Aspests.Tests
 
             public byte Age { get; set; }
 
-            public string FullName => $"{FirstName} {LastName}";
+            public string FullName => $"{this.FirstName} {this.LastName}";
 
         }
 

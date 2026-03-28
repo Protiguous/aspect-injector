@@ -10,23 +10,27 @@ namespace FluentIL.Logging
 
         public ConsoleLogger(string toolName)
         {
-            _toolName = toolName;
+	        this._toolName = toolName;
         }
 
         public virtual bool IsErrorThrown { get; private set; }
 
         public void Log(Rule rule, SequencePoint sp, params string[] messages)
         {
-            var location = sp?.Document == null ? _toolName :
+            var location = sp?.Document == null ? this._toolName :
                 $"{sp.Document.Url}({sp.StartLine},{sp.StartColumn},{sp.EndLine},{sp.EndColumn})";
 
             var message = string.Format(rule.Message.ToString(), messages ?? new string[] { });
 
             switch (rule.Severity)
             {
-                case RuleSeverity.Error: WriteError(rule.Id, location, message); IsErrorThrown = true; break;
-                case RuleSeverity.Warning: WriteWarning(rule.Id, location, message); break;
-                case RuleSeverity.Info: WriteInfo(location, message); break;
+                case RuleSeverity.Error:
+	                this.WriteError(rule.Id, location, message);
+	                this.IsErrorThrown = true; break;
+                case RuleSeverity.Warning:
+	                this.WriteWarning(rule.Id, location, message); break;
+                case RuleSeverity.Info:
+	                this.WriteInfo(location, message); break;
             }
         }
 

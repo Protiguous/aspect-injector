@@ -19,12 +19,12 @@ namespace FluentIL
             IReadOnlyList<string> assemblyHints = null
             )
         {
-            Namespace = @namespace;
-            Name = name;
-            IsValueType = isValueType;
-            IsArray = isArray;
-            Elements = elements ?? new StandardType[] { };
-            AssemblyHints = assemblyHints ?? new string[] { };
+	        this.Namespace = @namespace;
+	        this.Name = name;
+	        this.IsValueType = isValueType;
+	        this.IsArray = isArray;
+	        this.Elements = elements ?? new StandardType[] { };
+	        this.AssemblyHints = assemblyHints ?? new string[] { };
         }
 
         public string Namespace { get; }
@@ -36,12 +36,12 @@ namespace FluentIL
 
         public override string ToString()
         {
-            var fullname = new StringBuilder().Append(Namespace).Append(".").Append(Name);
-            if (Elements.Count > 0)
+            var fullname = new StringBuilder().Append(this.Namespace).Append(".").Append(this.Name);
+            if (this.Elements.Count > 0)
             {
                 fullname.Append("<");
-                var last = Elements.Last();
-                foreach (var element in Elements)
+                var last = this.Elements.Last();
+                foreach (var element in this.Elements)
                 {
                     fullname.Append(element.ToString());
                     if (element != last)
@@ -49,7 +49,7 @@ namespace FluentIL
                 }
                 fullname.Append(">");
             }
-            if (IsArray)
+            if (this.IsArray)
                 fullname.Append("[]");
 
             return fullname.ToString();
@@ -57,7 +57,7 @@ namespace FluentIL
 
         public StandardType MakeArray()
         {
-            return new StandardType(Namespace, Name, IsValueType, true, Elements, AssemblyHints);
+            return new StandardType(this.Namespace, this.Name, this.IsValueType, true, this.Elements, this.AssemblyHints);
         }
     }   
 }

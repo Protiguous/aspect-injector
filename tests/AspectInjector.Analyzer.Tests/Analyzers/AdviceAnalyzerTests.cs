@@ -1,15 +1,16 @@
+﻿using System.Threading.Tasks;
 using AspectInjector.Analyzer.Analyzers;
+using AspectInjector.Analyzer.Tests.Helpers;
 using AspectInjector.Rules;
 using Microsoft.CodeAnalysis.Diagnostics;
-using TestHelper;
 using Xunit;
 
-namespace AspectInjector.Analyzer.Test.Analyzers
+namespace AspectInjector.Analyzer.Tests.Analyzers
 {
     public class AdviceAnalyzerTests : CorrectDefinitionsTests
     {
         [Fact]
-        public void Advice_Must_Not_Be_Static()
+        public async Task Advice_Must_Not_Be_Static()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -23,11 +24,11 @@ namespace TestNameSpace
     }
 }";
             var expected = DiagnosticResult.From(EffectRules.AdviceMustHaveValidSingnature.AsDescriptor(), 7, 10);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
         }
 
         [Fact]
-        public void Advice_Must_Be_Public()
+        public async Task Advice_Must_Be_Public()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -42,11 +43,11 @@ namespace TestNameSpace
 }";
 
             var expected = DiagnosticResult.From(EffectRules.AdviceMustHaveValidSingnature.AsDescriptor(), 7, 10);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
         }
 
         [Fact]
-        public void Advice_Must_Not_Be_Generic()
+        public async Task Advice_Must_Not_Be_Generic()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -61,11 +62,11 @@ namespace TestNameSpace
 }";
 
             var expected = DiagnosticResult.From(EffectRules.AdviceMustHaveValidSingnature.AsDescriptor(), 7, 10);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
         }
 
         [Fact]
-        public void Advice_Inline_Must_Be_Void()
+        public async Task Advice_Inline_Must_Be_Void()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -80,11 +81,11 @@ namespace TestNameSpace
 }";
 
             var expected = DiagnosticResult.From(EffectRules.AdviceMustHaveValidSingnature.AsDescriptor(), 7, 10);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
         }
 
         [Fact]
-        public void Advice_Around_Must_Be_Object()
+        public async Task Advice_Around_Must_Be_Object()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -99,11 +100,11 @@ namespace TestNameSpace
 }";
 
             var expected = DiagnosticResult.From(EffectRules.AdviceMustHaveValidSingnature.AsDescriptor(), 7, 10);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
         }
 
         [Fact]
-        public void Advice_Argument_Must_Be_Bound()
+        public async Task Advice_Argument_Must_Be_Bound()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -121,11 +122,11 @@ namespace TestNameSpace
                 DiagnosticResult.From(EffectRules.AdviceArgumentMustBeBound.AsDescriptor(), 8, 35),
                 DiagnosticResult.From(EffectRules.AdviceArgumentMustBeBound.AsDescriptor(), 8, 45),
             };
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
         }
 
         [Fact]
-        public void Advice_Should_Be_Part_Of_Aspect()
+        public async Task Advice_Should_Be_Part_Of_Aspect()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -138,7 +139,7 @@ namespace TestNameSpace
     }
 }";
             var expected = DiagnosticResult.From(EffectRules.EffectMustBePartOfAspect.AsDescriptor(), 6, 10);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()

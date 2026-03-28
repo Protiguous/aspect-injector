@@ -14,10 +14,11 @@ namespace AspectInjector.Tests.Runtime.Issues
     public class Issue_0123
     {
         [Fact]
-        public void Fixed()
+        public async Task Fixed()
         {
             Checker.Passed = false;
-            new HomeController().ActionOnlyAdminsCanDo().Wait();
+            var bob = new HomeController();
+            await bob.ActionOnlyAdminsCanDo();
             Assert.True(Checker.Passed);
         }
 

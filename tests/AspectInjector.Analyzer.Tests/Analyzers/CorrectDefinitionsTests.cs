@@ -1,19 +1,20 @@
-﻿using TestHelper;
+﻿using System.Threading.Tasks;
+using AspectInjector.Analyzer.Tests.Verifiers;
 using Xunit;
 
-namespace AspectInjector.Analyzer.Test.Analyzers
+namespace AspectInjector.Analyzer.Tests.Analyzers
 {
     public abstract class CorrectDefinitionsTests : CodeFixVerifier
     {
         [Fact]
-        public void No_Code_Doesnt_Throw_Analysis_Error()
+        public async Task No_Code_Doesnt_Throw_Analysis_Error()
         {
             var test = @"";
-            VerifyCSharpDiagnostic(test);
+            await this.VerifyCSharpDiagnostic(test);
         }
 
         [Fact]
-        public void All_Valid_Doesnt_Throw_Analysis_Error()
+        public async Task All_Valid_Doesnt_Throw_Analysis_Error()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -71,7 +72,7 @@ namespace TestNameSpace
         }
     }
 }";
-            VerifyCSharpDiagnostic(test);
+            await this.VerifyCSharpDiagnostic(test);
         }
     }
 }

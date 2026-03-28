@@ -1,4 +1,4 @@
-﻿using AspectInjector.Broker;
+using AspectInjector.Broker;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeRefactorings;
@@ -15,16 +15,18 @@ namespace AspectInjector.Analyzer.Refactorings
     [ExportCodeRefactoringProvider(LanguageNames.CSharp, Name = nameof(AdviceCodeRefactoringProvider))]
     public class AdviceCodeRefactoringProvider : CodeRefactoringProvider
     {
-        private static readonly ImmutableArray<ParameterSample> _shared = new List<ParameterSample>
-        {
-            Samples.Parameters.Arguments,
-            Samples.Parameters.Instance,
-            Samples.Parameters.Name,
-            Samples.Parameters.Type,
-            Samples.Parameters.Metadata,
-            Samples.Parameters.ReturnType,
-            Samples.Parameters.Triggers,
-        }.ToImmutableArray();
+        private static readonly ImmutableArray<ParameterSample> _shared = [
+            ..new List<ParameterSample>
+            {
+                Samples.Parameters.Arguments,
+                Samples.Parameters.Instance,
+                Samples.Parameters.Name,
+                Samples.Parameters.Type,
+                Samples.Parameters.Metadata,
+                Samples.Parameters.ReturnType,
+                Samples.Parameters.Triggers,
+            }
+        ];
 
         private static readonly ImmutableArray<ParameterSample> _after = _shared.AddRange(new List<ParameterSample>
         {
@@ -90,7 +92,7 @@ namespace AspectInjector.Analyzer.Refactorings
             var newMethod = method.WithParameterList(method.ParameterList.AddParameters(parameter.ParameterSyntax)/*.WithAdditionalAnnotations(Formatter.Annotation)*/);
 
             root = root.ReplaceNode(method, newMethod);
-            root = root.WithUpdatedUsings(new[] { parameter.UsingSyntax });           
+            root = root.WithUpdatedUsings([parameter.UsingSyntax]);           
 
             return context.Document.WithSyntaxRoot(root);
         }

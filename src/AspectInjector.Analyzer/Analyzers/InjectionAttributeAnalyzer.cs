@@ -12,10 +12,11 @@ namespace AspectInjector.Analyzer.Analyzers
     public class InjectionAttributeAnalyzer : DiagnosticAnalyzer
     {
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-            => ImmutableArray.Create(
+            =>
+            [
                 InjectionRules.InjectionMustReferToAspect.AsDescriptor()
                 , InjectionRules.InjectionMustBeAttribute.AsDescriptor()
-                );
+            ];
 
         public override void Initialize(AnalysisContext context)
         {

@@ -13,13 +13,13 @@ namespace AspectInjector.Analyzer.Analyzers
     public class AspectAttributeAnalyzer : DiagnosticAnalyzer
     {
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>
-            ImmutableArray.Create(
-                AspectRules.AspectMustHaveValidSignature.AsDescriptor()
+        [
+            AspectRules.AspectMustHaveValidSignature.AsDescriptor()
                 , AspectRules.AspectMustHaveContructorOrFactory.AsDescriptor()
                 , AspectRules.AspectFactoryMustContainFactoryMethod.AsDescriptor()
                 , AspectRules.AspectShouldContainEffect.AsDescriptor()
                 , GeneralRules.UnknownCompilationOption.AsDescriptor()
-                );
+        ];
 
         public override void Initialize(AnalysisContext context)
         {

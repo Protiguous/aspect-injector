@@ -16,9 +16,9 @@ namespace AspectInjector.Analyzer.CodeFixes
     public class AspectCodeFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds =>
-            ImmutableArray.Create(
-                AspectRules.AspectMustHaveValidSignature.Id
-                );
+        [
+            AspectRules.AspectMustHaveValidSignature.Id
+        ];
 
 
         public sealed override Task RegisterCodeFixesAsync(CodeFixContext context)

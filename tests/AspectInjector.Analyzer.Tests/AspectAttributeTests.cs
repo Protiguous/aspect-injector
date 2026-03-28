@@ -1,26 +1,27 @@
+﻿using System.Threading.Tasks;
 using AspectInjector.Analyzer.Analyzers;
 using AspectInjector.Analyzer.CodeFixes;
+using AspectInjector.Analyzer.Tests.Helpers;
 using AspectInjector.Rules;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.Diagnostics;
-using TestHelper;
 using Xunit;
 
-namespace AspectInjector.Analyzer.Test
+namespace AspectInjector.Analyzer.Tests
 {
-    public class AspectAttributeTests : CodeFixVerifier
+    public class AspectAttributeTests : Verifiers.CodeFixVerifier
     {
         [Fact]
-        public void NoCode_NoDiagnostics()
+        public async Task NoCode_NoDiagnostics()
         {
             var test = @"";
 
-            VerifyCSharpDiagnostic(test);
+            await this.VerifyCSharpDiagnostic(test);
         }
 
 
         [Fact]
-        public void Aspect_Must_Not_Be_Static()
+        public async Task Aspect_Must_Not_Be_Static()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -34,7 +35,7 @@ namespace AspectInjector.Analyzer.Test
             }
     }";
             var expected = DiagnosticResult.From(AspectRules.AspectMustHaveValidSignature.AsDescriptor(), 4, 14);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
 
             var fixtest =
 @"using AspectInjector.Broker;
@@ -47,11 +48,11 @@ namespace AspectInjector.Analyzer.Test
         public void Before(){}
             }
     }";
-            VerifyCSharpFix(test, fixtest);
+            await this.VerifyCSharpFix(test, fixtest);
         }
 
         [Fact]
-        public void Aspect_Must_Not_Be_Abstract()
+        public async Task Aspect_Must_Not_Be_Abstract()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -76,11 +77,11 @@ namespace AspectInjector.Analyzer.Test
         public void Before(){}
             }
     }";
-            VerifyCSharpFix(test, fixtest);
+            await this.VerifyCSharpFix(test, fixtest);
         }
 
         [Fact]
-        public void Aspect_Must_Not_Be_Generic()
+        public async Task Aspect_Must_Not_Be_Generic()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -95,11 +96,11 @@ namespace TestNameSpace
 }";
 
             var expected = DiagnosticResult.From(AspectRules.AspectMustHaveValidSignature.AsDescriptor(), 4, 6);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
         }
 
         [Fact]
-        public void Aspect_Must_Have_Parameterless_Ctor()
+        public async Task Aspect_Must_Have_Parameterless_Ctor()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -116,11 +117,11 @@ namespace TestNameSpace
 }";
 
             var expected = DiagnosticResult.From(AspectRules.AspectMustHaveContructorOrFactory.AsDescriptor(), 4, 6);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
         }
 
         [Fact]
-        public void Aspect_Factory_Must_Have_Factory_Method()
+        public async Task Aspect_Factory_Must_Have_Factory_Method()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -144,11 +145,11 @@ namespace TestNameSpace
 }";
 
             var expected = DiagnosticResult.From(AspectRules.AspectFactoryMustContainFactoryMethod.AsDescriptor(), 5, 6);
-            VerifyCSharpDiagnostic(test, expected);
+            await this.VerifyCSharpDiagnostic(test, expected);
         }
 
         [Fact]
-        public void Aspect_Factory_Must_Have_Factory_Method_Valid()
+        public async Task Aspect_Factory_Must_Have_Factory_Method_Valid()
         {
             var test =
 @"using AspectInjector.Broker;
@@ -169,8 +170,8 @@ namespace TestNameSpace
             return null;
         }
     }
-}";            
-            VerifyCSharpDiagnostic(test);
+}";
+            await this.VerifyCSharpDiagnostic(test);
         }
 
         protected override CodeFixProvider GetCSharpCodeFixProvider()

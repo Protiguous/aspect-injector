@@ -1,4 +1,4 @@
-﻿using FluentIL.Common;
+using FluentIL.Common;
 using FluentIL.Logging;
 using FluentIL.Resolvers;
 using Mono.Cecil;
