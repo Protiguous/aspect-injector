@@ -1,0 +1,10 @@
+﻿<Project>
+  <ItemGroup>
+    <!-- Pin to the runtime/refpack version for net8.0 to avoid conflicts -->
+    <PackageVersion Include="System.Collections.Immutable" Version="8.0.0" />
+    <!-- Centralize test package versions -->
+    <PackageVersion Include="xunit" Version="2.5.0" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.0" />
+    <PackageVersion Include="xunit.abstractions" Version="2.0.3" />
+  </ItemGroup>
+</Project>

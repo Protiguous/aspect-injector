@@ -1,6 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <PackageTags>aspect cache memorycache method methodcache</PackageTags>
     <Description>
       This package provides cache aspect for your methods. Put [MemoryCache(seconds)] attribure on your methods. And enjoy hassle-free memory cache for your methods.

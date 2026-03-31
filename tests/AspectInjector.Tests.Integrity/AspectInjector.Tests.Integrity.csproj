@@ -1,14 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
     <AspectInjector_Enabled>false</AspectInjector_Enabled>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Unofficial.CoreRT.ILVerify" Version="0.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
-    <PackageReference Include="xunit.v3" Version="3.2.2" />
+    <PackageReference Include="xunit" Version="2.5.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.0" />
   </ItemGroup>
 
   <ItemGroup>

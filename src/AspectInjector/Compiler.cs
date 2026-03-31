@@ -14,7 +14,7 @@ public class Compiler
     public bool Execute(string filename, IReadOnlyList<string> references, bool optimize, bool verbose, TaskLoggingHelper logHelper)
     {
 #pragma warning disable S1854 // Unused assignments should be removed
-        var version = typeof(Compiler).Assembly.GetName().Version.ToString(3);
+        var version = typeof(Compiler).Assembly.GetName().Version?.ToString(3) ?? "0.0.0";
 #pragma warning restore S1854 // Unused assignments should be removed
 
 #if DEBUG

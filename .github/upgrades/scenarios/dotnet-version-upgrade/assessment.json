@@ -1,0 +1,1218 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "net10.0",
+    "targetDisplayName": ".NETCoreApp,Version=v10.0"
+  },
+  "analysisStartTime": "2026-03-29T10:22:05.7514316Z",
+  "analysisEndTime": "2026-03-29T10:22:08.4921375Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 22,
+      "issues": 5,
+      "incidents": 20,
+      "effort": 20
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 13,
+        "Optional": 0,
+        "Potential": 7,
+        "Information": 0
+      },
+      "category": {
+        "NuGet": 5,
+        "Project": 8,
+        "Api": 7
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "src\\AspectInjector.Analyzer\\AspectInjector.Analyzer.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 6,
+      "properties": {
+        "appName": "AspectInjector.Analyzer",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0",
+          "netstandard2.1"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 20,
+        "numberOfCodeFiles": 20,
+        "linesTotal": 1286,
+        "linesOfCode": 1286,
+        "totalApiScanned": 1812,
+        "minLinesOfCodeToChange": 4,
+        "maxLinesOfCodeToChange": 4
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "08b9c917-8bcd-47c3-8e25-65c799a9238e",
+          "ruleId": "NuGet.0003",
+          "projectPath": "src\\AspectInjector.Analyzer\\AspectInjector.Analyzer.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "System.Runtime.InteropServices, 4.3.0\n\nRecommendation:\n\nPackage functionality included with new framework reference",
+              "protected": "System.Runtime.InteropServices, 4.3.0\n\nRecommendation:\n\nPackage functionality included with new framework reference"
+            },
+            "kind": "File",
+            "path": "src\\AspectInjector.Analyzer\\AspectInjector.Analyzer.csproj",
+            "snippet": "System.Runtime.InteropServices, 4.3.0\n\nRecommendation:\n\nPackage functionality included with new framework reference",
+            "protectedSnippet": "System.Runtime.InteropServices, 4.3.0\n\nRecommendation:\n\nPackage functionality included with new framework reference",
+            "label": "System.Runtime.InteropServices 4.3.0",
+            "properties": {
+              "PackageId": "System.Runtime.InteropServices",
+              "PackageVersion": "4.3.0",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "13eae5d0-5ed8-4d1e-8970-05813caad18e",
+          "ruleId": "Project.0002",
+          "projectPath": "src\\AspectInjector.Analyzer\\AspectInjector.Analyzer.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: netstandard2.0;netstandard2.1\nRecommended target framework: netstandard2.0;netstandard2.1;net10.0",
+              "protected": "Current target framework: netstandard2.0;netstandard2.1\nRecommended target framework: netstandard2.0;netstandard2.1;net10.0"
+            },
+            "kind": "File",
+            "path": "src\\AspectInjector.Analyzer\\AspectInjector.Analyzer.csproj",
+            "snippet": "Current target framework: netstandard2.0;netstandard2.1\nRecommended target framework: netstandard2.0;netstandard2.1;net10.0",
+            "protectedSnippet": "Current target framework: netstandard2.0;netstandard2.1\nRecommended target framework: netstandard2.0;netstandard2.1;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "netstandard2.0;netstandard2.1",
+              "RecommendedTargetFramework": "netstandard2.0;netstandard2.1;net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "fbf4012f-9da0-4ad8-8f5d-0cbe468f4b8d",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Composition.AttributedModel, 9.0.0-preview.6.24302.3. Add package reference to System.Composition.AttributedModel, 9.0.0-preview.6.24302.3",
+          "projectPath": "src\\AspectInjector.Analyzer\\AspectInjector.Analyzer.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Shared",
+              "protected": "M:System.Composition.SharedAttribute.#ctor"
+            },
+            "kind": "File",
+            "path": "src\\AspectInjector.Analyzer\\CodeFixes\\AspectCodeFixProvider.cs",
+            "snippet": "Shared",
+            "protectedSnippet": "M:System.Composition.SharedAttribute.#ctor",
+            "label": "M:System.Composition.SharedAttribute.#ctor",
+            "properties": {
+              "PackageId": "System.Composition.AttributedModel",
+              "PackageNewVersion": "9.0.0-preview.6.24302.3"
+            },
+            "line": 14,
+            "column": 87
+          }
+        },
+        {
+          "incidentId": "3e38e5e7-ca00-4861-8df6-e8ace8fb7861",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Composition.AttributedModel, 9.0.0-preview.6.24302.3. Add package reference to System.Composition.AttributedModel, 9.0.0-preview.6.24302.3",
+          "projectPath": "src\\AspectInjector.Analyzer\\AspectInjector.Analyzer.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Shared",
+              "protected": "T:System.Composition.SharedAttribute"
+            },
+            "kind": "File",
+            "path": "src\\AspectInjector.Analyzer\\CodeFixes\\AspectCodeFixProvider.cs",
+            "snippet": "Shared",
+            "protectedSnippet": "T:System.Composition.SharedAttribute",
+            "label": "T:System.Composition.SharedAttribute",
+            "properties": {
+              "PackageId": "System.Composition.AttributedModel",
+              "PackageNewVersion": "9.0.0-preview.6.24302.3"
+            },
+            "line": 14,
+            "column": 87
+          }
+        },
+        {
+          "incidentId": "229678bc-b1be-4658-9574-b01c1b21c22c",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Composition.AttributedModel, 9.0.0-preview.6.24302.3. Add package reference to System.Composition.AttributedModel, 9.0.0-preview.6.24302.3",
+          "projectPath": "src\\AspectInjector.Analyzer\\AspectInjector.Analyzer.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Shared",
+              "protected": "M:System.Composition.SharedAttribute.#ctor"
+            },
+            "kind": "File",
+            "path": "src\\AspectInjector.Analyzer\\CodeFixes\\MixinCodeFixProvider.cs",
+            "snippet": "Shared",
+            "protectedSnippet": "M:System.Composition.SharedAttribute.#ctor",
+            "label": "M:System.Composition.SharedAttribute.#ctor",
+            "properties": {
+              "PackageId": "System.Composition.AttributedModel",
+              "PackageNewVersion": "9.0.0-preview.6.24302.3"
+            },
+            "line": 14,
+            "column": 87
+          }
+        },
+        {
+          "incidentId": "8f91d80c-0fec-4d89-82a4-7837a89c2a70",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Composition.AttributedModel, 9.0.0-preview.6.24302.3. Add package reference to System.Composition.AttributedModel, 9.0.0-preview.6.24302.3",
+          "projectPath": "src\\AspectInjector.Analyzer\\AspectInjector.Analyzer.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Shared",
+              "protected": "T:System.Composition.SharedAttribute"
+            },
+            "kind": "File",
+            "path": "src\\AspectInjector.Analyzer\\CodeFixes\\MixinCodeFixProvider.cs",
+            "snippet": "Shared",
+            "protectedSnippet": "T:System.Composition.SharedAttribute",
+            "label": "T:System.Composition.SharedAttribute",
+            "properties": {
+              "PackageId": "System.Composition.AttributedModel",
+              "PackageNewVersion": "9.0.0-preview.6.24302.3"
+            },
+            "line": 14,
+            "column": 87
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "tests\\AspectInjector.Analyzer.Tests\\AspectInjector.Analyzer.Tests.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "AspectInjector.Analyzer.Tests",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net8.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 16,
+        "numberOfCodeFiles": 14,
+        "linesTotal": 4600,
+        "linesOfCode": 1957,
+        "totalApiScanned": 1096,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "446f5685-6ebc-4980-81d0-3bd9f4b5c8e0",
+          "ruleId": "Project.0002",
+          "projectPath": "tests\\AspectInjector.Analyzer.Tests\\AspectInjector.Analyzer.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net8.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "tests\\AspectInjector.Analyzer.Tests\\AspectInjector.Analyzer.Tests.csproj",
+            "snippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "src\\AspectInjector.Broker\\AspectInjector.Broker.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "AspectInjector.Broker",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 13,
+        "numberOfCodeFiles": 13,
+        "linesTotal": 578,
+        "linesOfCode": 578,
+        "totalApiScanned": 108,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    },
+    {
+      "path": "src\\AspectInjector.Core.Advice\\AspectInjector.Core.Advice.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "AspectInjector.Core.Advice",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 19,
+        "numberOfCodeFiles": 19,
+        "linesTotal": 1568,
+        "linesOfCode": 1568,
+        "totalApiScanned": 2620,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    },
+    {
+      "path": "src\\AspectInjector.Core\\AspectInjector.Core.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "AspectInjector.Core",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 19,
+        "numberOfCodeFiles": 19,
+        "linesTotal": 1121,
+        "linesOfCode": 1121,
+        "totalApiScanned": 1250,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    },
+    {
+      "path": "src\\AspectInjector.Core.Mixin\\AspectInjector.Core.Mixin.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "AspectInjector.Core.Mixin",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 6,
+        "numberOfCodeFiles": 6,
+        "linesTotal": 482,
+        "linesOfCode": 482,
+        "totalApiScanned": 600,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    },
+    {
+      "path": "src\\AspectInjector\\AspectInjector.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "AspectInjector",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 5,
+        "numberOfCodeFiles": 5,
+        "linesTotal": 294,
+        "linesOfCode": 294,
+        "totalApiScanned": 243,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    },
+    {
+      "path": "src\\AspectInjector.Rules\\AspectInjector.Rules.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "AspectInjector.Rules",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 6,
+        "numberOfCodeFiles": 6,
+        "linesTotal": 315,
+        "linesOfCode": 315,
+        "totalApiScanned": 21,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    },
+    {
+      "path": "tests\\AspectInjector.Tests.Generics\\AspectInjector.Tests.Generics.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "AspectInjector.Tests.Generics",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net8.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 4,
+        "numberOfCodeFiles": 4,
+        "linesTotal": 246,
+        "linesOfCode": 246,
+        "totalApiScanned": 49,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "69521a02-a50b-4d46-b331-b81da708541d",
+          "ruleId": "Project.0002",
+          "projectPath": "tests\\AspectInjector.Tests.Generics\\AspectInjector.Tests.Generics.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net8.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "tests\\AspectInjector.Tests.Generics\\AspectInjector.Tests.Generics.csproj",
+            "snippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "tests\\AspectInjector.Tests.Integrity\\AspectInjector.Tests.Integrity.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "AspectInjector.Tests.Integrity",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net8.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 6,
+        "numberOfCodeFiles": 4,
+        "linesTotal": 2867,
+        "linesOfCode": 224,
+        "totalApiScanned": 221,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "d6071132-2cf8-4a14-a35d-5a20dc725e71",
+          "ruleId": "Project.0002",
+          "projectPath": "tests\\AspectInjector.Tests.Integrity\\AspectInjector.Tests.Integrity.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net8.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "tests\\AspectInjector.Tests.Integrity\\AspectInjector.Tests.Integrity.csproj",
+            "snippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "tests\\AspectInjector.Tests.Runtime\\AspectInjector.Tests.Runtime.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 2,
+      "properties": {
+        "appName": "AspectInjector.Tests.Runtime",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net6.0",
+          "net8.0",
+          "net462",
+          "net481"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 50,
+        "numberOfCodeFiles": 50,
+        "linesTotal": 4616,
+        "linesOfCode": 4616,
+        "totalApiScanned": 0,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "e388aff7-3c46-40e6-91a1-78b8138ed220",
+          "ruleId": "NuGet.0001",
+          "projectPath": "tests\\AspectInjector.Tests.Runtime\\AspectInjector.Tests.Runtime.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.NETFramework.ReferenceAssemblies, 1.0.3\n\nRecommendation:\n\nNo supported version found",
+              "protected": "Microsoft.NETFramework.ReferenceAssemblies, 1.0.3\n\nRecommendation:\n\nNo supported version found"
+            },
+            "kind": "File",
+            "path": "tests\\AspectInjector.Tests.Runtime\\AspectInjector.Tests.Runtime.csproj",
+            "snippet": "Microsoft.NETFramework.ReferenceAssemblies, 1.0.3\n\nRecommendation:\n\nNo supported version found",
+            "protectedSnippet": "Microsoft.NETFramework.ReferenceAssemblies, 1.0.3\n\nRecommendation:\n\nNo supported version found",
+            "label": "Microsoft.NETFramework.ReferenceAssemblies 1.0.3",
+            "properties": {
+              "PackageId": "Microsoft.NETFramework.ReferenceAssemblies",
+              "PackageVersion": "1.0.3",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "fb397e08-c0f1-4613-a69b-c72f53c47cbb",
+          "ruleId": "Project.0002",
+          "projectPath": "tests\\AspectInjector.Tests.Runtime\\AspectInjector.Tests.Runtime.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0;net8.0;net462;net481\nRecommended target framework: net6.0;net8.0;net462;net481;net10.0",
+              "protected": "Current target framework: net6.0;net8.0;net462;net481\nRecommended target framework: net6.0;net8.0;net462;net481;net10.0"
+            },
+            "kind": "File",
+            "path": "tests\\AspectInjector.Tests.Runtime\\AspectInjector.Tests.Runtime.csproj",
+            "snippet": "Current target framework: net6.0;net8.0;net462;net481\nRecommended target framework: net6.0;net8.0;net462;net481;net10.0",
+            "protectedSnippet": "Current target framework: net6.0;net8.0;net462;net481\nRecommended target framework: net6.0;net8.0;net462;net481;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0;net8.0;net462;net481",
+              "RecommendedTargetFramework": "net6.0;net8.0;net462;net481;net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "tests\\AspectInjector.Tests.RuntimeAssets\\AspectInjector.Tests.RuntimeAssets.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 2,
+      "properties": {
+        "appName": "AspectInjector.Tests.RuntimeAssets",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0",
+          "net8.0",
+          "net6.0",
+          "net462",
+          "net481"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 12,
+        "numberOfCodeFiles": 12,
+        "linesTotal": 636,
+        "linesOfCode": 636,
+        "totalApiScanned": 0,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "b40f8903-f0cd-492c-9aad-ef7becde4af8",
+          "ruleId": "NuGet.0001",
+          "projectPath": "tests\\AspectInjector.Tests.RuntimeAssets\\AspectInjector.Tests.RuntimeAssets.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.NETFramework.ReferenceAssemblies, 1.0.3\n\nRecommendation:\n\nNo supported version found",
+              "protected": "Microsoft.NETFramework.ReferenceAssemblies, 1.0.3\n\nRecommendation:\n\nNo supported version found"
+            },
+            "kind": "File",
+            "path": "tests\\AspectInjector.Tests.RuntimeAssets\\AspectInjector.Tests.RuntimeAssets.csproj",
+            "snippet": "Microsoft.NETFramework.ReferenceAssemblies, 1.0.3\n\nRecommendation:\n\nNo supported version found",
+            "protectedSnippet": "Microsoft.NETFramework.ReferenceAssemblies, 1.0.3\n\nRecommendation:\n\nNo supported version found",
+            "label": "Microsoft.NETFramework.ReferenceAssemblies 1.0.3",
+            "properties": {
+              "PackageId": "Microsoft.NETFramework.ReferenceAssemblies",
+              "PackageVersion": "1.0.3",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "7c37ee4e-f01d-4b97-a6d8-d1ea7aba0dab",
+          "ruleId": "Project.0002",
+          "projectPath": "tests\\AspectInjector.Tests.RuntimeAssets\\AspectInjector.Tests.RuntimeAssets.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: netstandard2.0;net8.0;net6.0;net462;net481\nRecommended target framework: netstandard2.0;net8.0;net6.0;net462;net481;net10.0",
+              "protected": "Current target framework: netstandard2.0;net8.0;net6.0;net462;net481\nRecommended target framework: netstandard2.0;net8.0;net6.0;net462;net481;net10.0"
+            },
+            "kind": "File",
+            "path": "tests\\AspectInjector.Tests.RuntimeAssets\\AspectInjector.Tests.RuntimeAssets.csproj",
+            "snippet": "Current target framework: netstandard2.0;net8.0;net6.0;net462;net481\nRecommended target framework: netstandard2.0;net8.0;net6.0;net462;net481;net10.0",
+            "protectedSnippet": "Current target framework: netstandard2.0;net8.0;net6.0;net462;net481\nRecommended target framework: netstandard2.0;net8.0;net6.0;net462;net481;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "netstandard2.0;net8.0;net6.0;net462;net481",
+              "RecommendedTargetFramework": "netstandard2.0;net8.0;net6.0;net462;net481;net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "tests\\AspectInjector.Tests.VBRuntime\\AspectInjector.Tests.VBRuntime.vbproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 3,
+      "properties": {
+        "appName": "AspectInjector.Tests.VBRuntime",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net6.0",
+          "net8.0"
+        ],
+        "languages": [
+          "Visual Basic"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 1,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 42,
+        "linesOfCode": 42,
+        "totalApiScanned": 0,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "1525b355-2d1f-4a98-80c3-11b0a0d70e64",
+          "ruleId": "NuGet.0001",
+          "projectPath": "tests\\AspectInjector.Tests.VBRuntime\\AspectInjector.Tests.VBRuntime.vbproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.NETFramework.ReferenceAssemblies, 1.0.3\n\nRecommendation:\n\nNo supported version found",
+              "protected": "Microsoft.NETFramework.ReferenceAssemblies, 1.0.3\n\nRecommendation:\n\nNo supported version found"
+            },
+            "kind": "File",
+            "path": "tests\\AspectInjector.Tests.VBRuntime\\AspectInjector.Tests.VBRuntime.vbproj",
+            "snippet": "Microsoft.NETFramework.ReferenceAssemblies, 1.0.3\n\nRecommendation:\n\nNo supported version found",
+            "protectedSnippet": "Microsoft.NETFramework.ReferenceAssemblies, 1.0.3\n\nRecommendation:\n\nNo supported version found",
+            "label": "Microsoft.NETFramework.ReferenceAssemblies 1.0.3",
+            "properties": {
+              "PackageId": "Microsoft.NETFramework.ReferenceAssemblies",
+              "PackageVersion": "1.0.3",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "34a5ee23-693e-41a2-8ee0-882795e0928f",
+          "ruleId": "NuGet.0003",
+          "projectPath": "tests\\AspectInjector.Tests.VBRuntime\\AspectInjector.Tests.VBRuntime.vbproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.VisualBasic, 10.3.0\n\nRecommendation:\n\nPackage functionality included with new framework reference",
+              "protected": "Microsoft.VisualBasic, 10.3.0\n\nRecommendation:\n\nPackage functionality included with new framework reference"
+            },
+            "kind": "File",
+            "path": "tests\\AspectInjector.Tests.VBRuntime\\AspectInjector.Tests.VBRuntime.vbproj",
+            "snippet": "Microsoft.VisualBasic, 10.3.0\n\nRecommendation:\n\nPackage functionality included with new framework reference",
+            "protectedSnippet": "Microsoft.VisualBasic, 10.3.0\n\nRecommendation:\n\nPackage functionality included with new framework reference",
+            "label": "Microsoft.VisualBasic 10.3.0",
+            "properties": {
+              "PackageId": "Microsoft.VisualBasic",
+              "PackageVersion": "10.3.0",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "2cfc1f71-bd34-4133-a68a-cd938f172e0d",
+          "ruleId": "Project.0002",
+          "projectPath": "tests\\AspectInjector.Tests.VBRuntime\\AspectInjector.Tests.VBRuntime.vbproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0;net8.0\nRecommended target framework: net6.0;net8.0;net10.0",
+              "protected": "Current target framework: net6.0;net8.0\nRecommended target framework: net6.0;net8.0;net10.0"
+            },
+            "kind": "File",
+            "path": "tests\\AspectInjector.Tests.VBRuntime\\AspectInjector.Tests.VBRuntime.vbproj",
+            "snippet": "Current target framework: net6.0;net8.0\nRecommended target framework: net6.0;net8.0;net10.0",
+            "protectedSnippet": "Current target framework: net6.0;net8.0\nRecommended target framework: net6.0;net8.0;net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0;net8.0",
+              "RecommendedTargetFramework": "net6.0;net8.0;net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "aspects\\Cache\\Aspects.Cache.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "Aspects.Cache",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 5,
+        "numberOfCodeFiles": 5,
+        "linesTotal": 317,
+        "linesOfCode": 317,
+        "totalApiScanned": 190,
+        "minLinesOfCodeToChange": 1,
+        "maxLinesOfCodeToChange": 1
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "9e415072-8cf7-492c-be9c-f51da4faa7e4",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: System.Text.Json metadata reader now unescapes metadata property names ",
+          "projectPath": "aspects\\Cache\\Aspects.Cache.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return JsonSerializer.Deserialize(data, type);",
+              "protected": "M:System.Text.Json.JsonSerializer.Deserialize(System.ReadOnlySpan{System.Byte},System.Type,System.Text.Json.JsonSerializerOptions)"
+            },
+            "kind": "File",
+            "path": "aspects\\Cache\\AbstractAttributes.cs",
+            "snippet": "return JsonSerializer.Deserialize(data, type);",
+            "protectedSnippet": "M:System.Text.Json.JsonSerializer.Deserialize(System.ReadOnlySpan{System.Byte},System.Type,System.Text.Json.JsonSerializerOptions)",
+            "label": "M:System.Text.Json.JsonSerializer.Deserialize(System.ReadOnlySpan{System.Byte},System.Type,System.Text.Json.JsonSerializerOptions)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/serialization/9.0/json-metadata-reader.md",
+                "isCustom": false
+              }
+            ],
+            "line": 92,
+            "column": 12
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "aspects\\Freezable\\Aspects.Freezable.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "Aspects.Freezable",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 3,
+        "numberOfCodeFiles": 3,
+        "linesTotal": 165,
+        "linesOfCode": 165,
+        "totalApiScanned": 42,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    },
+    {
+      "path": "aspects\\Lazy\\Aspects.Lazy.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "Aspects.Lazy",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 4,
+        "numberOfCodeFiles": 4,
+        "linesTotal": 177,
+        "linesOfCode": 177,
+        "totalApiScanned": 49,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    },
+    {
+      "path": "aspects\\Logging\\Aspects.Logging.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 2,
+      "properties": {
+        "appName": "Aspects.Logging",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 4,
+        "numberOfCodeFiles": 4,
+        "linesTotal": 195,
+        "linesOfCode": 195,
+        "totalApiScanned": 79,
+        "minLinesOfCodeToChange": 2,
+        "maxLinesOfCodeToChange": 2
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "30243958-9737-4b9f-a70e-f23fe48b2957",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: Message no longer duplicated in Console log output ",
+          "projectPath": "aspects\\Logging\\Aspects.Logging.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "LoggerFactory =\r\n            Microsoft.Extensions.Logging.LoggerFactory.Create(builder =\u003E\r\n                builder.AddConsole());",
+              "protected": "M:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggingBuilder)"
+            },
+            "kind": "File",
+            "path": "aspects\\Logging\\LoggingAspect.cs",
+            "snippet": "LoggerFactory =\r\n            Microsoft.Extensions.Logging.LoggerFactory.Create(builder =\u003E\r\n                builder.AddConsole());",
+            "protectedSnippet": "M:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggingBuilder)",
+            "label": "M:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggingBuilder)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/extensions/10.0/console-json-logging-duplicate-messages.md",
+                "isCustom": false
+              }
+            ],
+            "line": 13,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "2e539c2e-e174-4dcc-a02e-0c142ac9235f",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: Message no longer duplicated in Console log output ",
+          "projectPath": "aspects\\Logging\\Aspects.Logging.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "LoggerFactory =\r\n            Microsoft.Extensions.Logging.LoggerFactory.Create(builder =\u003E\r\n                builder.AddConsole());",
+              "protected": "M:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggingBuilder)"
+            },
+            "kind": "File",
+            "path": "aspects\\Logging\\LoggingAspect.cs",
+            "snippet": "LoggerFactory =\r\n            Microsoft.Extensions.Logging.LoggerFactory.Create(builder =\u003E\r\n                builder.AddConsole());",
+            "protectedSnippet": "M:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggingBuilder)",
+            "label": "M:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole(Microsoft.Extensions.Logging.ILoggingBuilder)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/extensions/10.0/console-json-logging-duplicate-messages.md",
+                "isCustom": false
+              }
+            ],
+            "line": 13,
+            "column": 12
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "aspects\\Notify\\Aspects.Notify.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "Aspects.Notify",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 3,
+        "numberOfCodeFiles": 3,
+        "linesTotal": 171,
+        "linesOfCode": 171,
+        "totalApiScanned": 56,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    },
+    {
+      "path": "tests\\Aspects.Tests\\Aspects.Tests.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "Aspects.Tests",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net8.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 8,
+        "numberOfCodeFiles": 6,
+        "linesTotal": 3365,
+        "linesOfCode": 722,
+        "totalApiScanned": 402,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "e8c90b61-9b2f-4919-a17e-97cc27934195",
+          "ruleId": "Project.0002",
+          "projectPath": "tests\\Aspects.Tests\\Aspects.Tests.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net8.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "tests\\Aspects.Tests\\Aspects.Tests.csproj",
+            "snippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "aspects\\Universal\\Aspects.Universal.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "Aspects.Universal",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 14,
+        "numberOfCodeFiles": 14,
+        "linesTotal": 480,
+        "linesOfCode": 480,
+        "totalApiScanned": 211,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    },
+    {
+      "path": "src\\FluentIL.Common\\FluentIL.Common.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "FluentIL.Common",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 3,
+        "numberOfCodeFiles": 3,
+        "linesTotal": 158,
+        "linesOfCode": 158,
+        "totalApiScanned": 53,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    },
+    {
+      "path": "src\\FluentIL\\FluentIL.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "FluentIL",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "netstandard2.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 20,
+        "numberOfCodeFiles": 20,
+        "linesTotal": 1677,
+        "linesOfCode": 1677,
+        "totalApiScanned": 2339,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    }
+  ],
+  "rules": {
+    "NuGet.0003": {
+      "id": "NuGet.0003",
+      "isFeature": false,
+      "description": "NuGet package functionality is included with framework reference.\n\nPackage needs to be removed.",
+      "label": "NuGet package functionality is included with framework reference",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262609",
+          "isCustom": false
+        }
+      ]
+    },
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "Project\u0027s target framework(s) needs to be changed to the new target framework that you selected for this upgrade.\n\nDuring upgrade target framework will be adjusted to corresponding platform when applicable. In some cases project would result in multiple target frameworks after the upgrade if it was using features that now have their own platforms in modern .NET frameworks (windows, iOS, Android etc).",
+      "label": "Project\u0027s target framework(s) needs to be changed",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0002": {
+      "id": "Api.0002",
+      "isFeature": false,
+      "description": "API is source incompatible for selected .NET version: requires code changes to compile successfully when targeting a new version, such as removing obsolete APIs or changing method signatures.",
+      "label": "Source incompatible for selected .NET version",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Breaking changes in .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262679",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0001": {
+      "id": "NuGet.0001",
+      "isFeature": false,
+      "description": "NuGet package is incompatible with selected target framework.\n\nPackage needs to be upgraded to a version supporting selected project target framework. If there no new package versions supporting new target framework, different package needs to be used and all code needs to be upgraded to new API.",
+      "label": "NuGet package is incompatible",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262529",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0003": {
+      "id": "Api.0003",
+      "isFeature": false,
+      "description": "API has a behavioral change in selected .NET version: code and binaries may behave differently at runtime without needing recompilation, but the new behavior might be undesirable and require updates.",
+      "label": "Behavioral change in selected .NET version",
+      "severity": "Potential",
+      "effort": 1
+    }
+  }
+}
