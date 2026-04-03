@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
   </PropertyGroup>
 
@@ -16,7 +16,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.3.0" />
-    <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
+    <!-- System.Runtime.InteropServices is provided by .NET 10 runtime; remove explicit package reference -->
+    <!-- <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" /> -->
   </ItemGroup>
 
   <ItemGroup>

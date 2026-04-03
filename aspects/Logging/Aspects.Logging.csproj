@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <PackageTags>aspect lazy attribute</PackageTags>
     <Description>
       This package provides simple logging aspect attribute [Log].

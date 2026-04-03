@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <PackageTags>aspect cache memorycache method methodcache</PackageTags>
     <Description>
       This package provides cache aspect for your methods. Put [MemoryCache(seconds)] attribure on your methods. And enjoy hassle-free memory cache for your methods.
@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="10.0.5" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="10.0.5" />
-    <PackageReference Include="System.Text.Json" Version="10.0.5" />
+    <!-- System.Text.Json is provided by the target framework for net10.0; remove explicit package to avoid NU1510 -->
+    <!-- <PackageReference Include="System.Text.Json" Version="10.0.5" /> -->
   </ItemGroup>  
 </Project>
