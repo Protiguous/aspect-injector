@@ -19,11 +19,11 @@ No xml configs! No wierd reflection hacks! No runtime emit!
 Works with AOT and Blazor!
 
 See release notes for this version here:
-https://github.com/pamidur/aspect-injector/releases/tag/$(Version)
+https://github.com/Protiguous/aspect-injector/releases/tag/$(Version)
     </PackageDescription>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>aop aspect interceptor injector aot blazor attribute il weaving boundary post-compiler</PackageTags>
-    <PackageReleaseNotes>See here: https://github.com/pamidur/aspect-injector/releases/tag/$(Version)</PackageReleaseNotes>
+    <PackageReleaseNotes>See here: https://github.com/Protiguous/aspect-injector/releases/tag/$(Version)</PackageReleaseNotes>
 
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <IncludeBuildOutput>False</IncludeBuildOutput>

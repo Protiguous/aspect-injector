@@ -4,6 +4,6 @@
     <PackageTags>aspect notify notifypropertychanged INPC pattern attribute</PackageTags>
     <Description>This package provides simple INotifyPropertyChanged aspect. Put [Notify] attribure on your properties or a whole class. You can use [NotifyAlso] attributes to notify other dependant properties.
 Powered by AspectInjector.</Description>
-    <PackageProjectUrl>https://github.com/pamidur/aspect-injector/tree/master/samples/src/Notify</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Protiguous/aspect-injector/tree/master/samples/src/Notify</PackageProjectUrl>
   </PropertyGroup>
 </Project>

@@ -1,13 +1,13 @@
-<Project>
+﻿<Project>
   <PropertyGroup>
     <Product>Aspect Injector</Product>
     <Authors>Aspect Injector Contributors</Authors>
     <Company>Aspect Injector Contributors</Company>
     <LangVersion>12.0</LangVersion>
     <PackageIcon>package.png</PackageIcon>
-    <PackageProjectUrl>https://github.com/pamidur/aspect-injector</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/pamidur/aspect-injector</RepositoryUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/pamidur/aspect-injector/master/package.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/Protiguous/aspect-injector</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Protiguous/aspect-injector</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Protiguous/aspect-injector/master/package.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryCommit>$(CommitSHA)</RepositoryCommit>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

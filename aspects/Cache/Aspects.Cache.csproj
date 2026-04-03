@@ -7,7 +7,7 @@
       Or implement your own cache mechanics by inheriting CacheAttribute class.
       Powered by AspectInjector.
     </Description>
-    <PackageProjectUrl>https://github.com/pamidur/aspect-injector/tree/master/samples/src/Cache</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Protiguous/aspect-injector/tree/master/samples/src/Cache</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

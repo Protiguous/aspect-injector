@@ -5,6 +5,6 @@
     <Description>
       This package provides simple universal method wrrapper aspect.
     </Description>
-    <PackageProjectUrl>https://github.com/pamidur/aspect-injector/tree/master/samples/src/Universal</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Protiguous/aspect-injector/tree/master/samples/src/Universal</PackageProjectUrl>
 	</PropertyGroup>
 </Project>

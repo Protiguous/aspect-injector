@@ -6,6 +6,6 @@
     <Description>
       This package provides simple lazy aspect attribute.
     </Description>
-    <PackageProjectUrl>https://github.com/pamidur/aspect-injector/tree/master/samples/src/Lazy</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Protiguous/aspect-injector/tree/master/samples/src/Lazy</PackageProjectUrl>
   </PropertyGroup>
 </Project>
